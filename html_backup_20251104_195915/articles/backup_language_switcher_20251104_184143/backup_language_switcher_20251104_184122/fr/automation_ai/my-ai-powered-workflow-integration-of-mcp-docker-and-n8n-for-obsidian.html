@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="🚀 Intégration IA avec MCP, Docker et N8N - Technical tutorial and guide">
+    <meta name="keywords" content="homelab, cybersecurity, tutorial, automation_ai">
+    <meta name="author" content="Omar LYAHYAI">
+    
+    <title>🚀 Intégration IA avec MCP, Docker et N8N | Technical Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <link rel="stylesheet" href="../../../css/responsive.css">
+    <link rel="stylesheet" href="../../../css/animations.css">
+    <link rel="stylesheet" href="../../../blog/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../../index.html" class="logo">
+                        <i class="fas fa-terminal"></i>
+                        <span>OLYAHYAI</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="lang-toggle" aria-label="Switch language">
+                        <span class="lang-current">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Article Header -->
+        <section class="article-header" role="region" aria-label="Article header">
+            <div class="container">
+                <div class="article-breadcrumb">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="../../../index.html">Home</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../../blog/index.html">Blog</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../../blog/automation_ai.html">Automation & AI</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>🚀 Intégration IA avec MCP, Docker et N8N</span>
+                    </nav>
+                </div>
+                
+                <h1 class="article-title">🚀 Intégration IA avec MCP, Docker et N8N</h1>
+                
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2025-10-25</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>10 min read</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>Automation & AI</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-tags"></i>
+                        <span>Homelab, Tutorial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Article Content -->
+        <section class="article-content" role="region" aria-label="Article content">
+            <div class="container">
+                <div class="article-body">
+                    </p>
+<p>
+<h1>🚀 Intégration IA avec MCP, Docker et N8N</h1>
+<strong>Auteur :</strong> Omar LYAHYAI
+<strong>Date :</strong> 2025-10-25
+<p>---</p>
+</p>
+<p>
+<h2>🎯 Objectif</h2>
+<p>Automatiser l'organisation des notes Obsidian à l'aide d'une IA accessible via API, orchestrée avec Docker, MCP et N8N.</p>
+</p>
+<p>
+---
+</p>
+<p>
+<h2>🧑‍💻 Prérequis</h2>
+<ul><li>Docker installé</li>
+<li>MCP (Modular Copilot Platform) déployé</li>
+<li>N8N installé (via Docker ou local)</li>
+<li>Vault Obsidian accessible localement</li>
+</ul>---
+<h2>🧪 Étapes détaillées</h2>
+<h3>1. 📦 Déployer MCP avec Docker</h3>
+<pre><code class="language-bash">docker run -d   --name mcp   -p 5000:5000   -v $(pwd)/mcp_data:/app/data   ghcr.io/modularcopilot/mcp:latest</code></pre>
+<ul><li>MCP expose une API sur <code>http://localhost:5000</code></li>
+</ul><h3>2. 🧠 Préparer un prompt pour l'IA</h3>
+<p>Exemple de prompt :</p>
+<pre><code class="language-json">{
+<p>"prompt": "Unifie toutes mes notes Obsidian en anglais. Traduis les titres français, regroupe les contenus similaires, et crée un index thématique."</p>
+}</code></pre>
+</p>
+<p>
+<h3>3. 🤖 Créer un workflow N8N</h3>
+<p>#### Étapes du workflow :</p>
+1. <strong>Trigger</strong> : manuel ou planifié
+2. <strong>Read Files</strong> : lire les fichiers <code>.md</code> du vault Obsidian
+3. <strong>HTTP Request</strong> : envoyer le contenu à MCP via POST
+- URL : <code>http://localhost:5000/api/prompt</code>
+- Body : JSON avec le prompt et le contenu des notes
+4. <strong>Write File</strong> : sauvegarder la réponse dans un nouveau fichier <code>.md</code>
+</p>
+<p>
+<h3>4. ⚙️ Exemple de configuration HTTP Request dans N8N</h3>
+<ul><li><strong>Method</strong> : POST</li>
+<li><strong>URL</strong> : <code>http://localhost:5000/api/prompt</code></li>
+<li><strong>Headers</strong> : <code>Content-Type: application/json</code></li>
+<li><strong>Body</strong> :</li>
+</ul><pre><code class="language-">{
+<p>"prompt": "Organise mes notes Obsidian par thème et langue.",</p>
+"notes": "{{ $json["content"] }}"
+}</code></pre>
+</p>
+<p>
+<h3>5. 📁 Sauvegarde dans Obsidian</h3>
+<ul><li>Le fichier généré est enregistré dans le dossier <code>Vault/Index/organisation.md</code></li>
+<li>Tu peux lier ce fichier dans ta note d’accueil Obsidian</li>
+</ul>---
+<h2>🧠 Astuces</h2>
+<ul><li>Utilise des tags <code>#fr</code> et <code>#en</code> pour identifier les langues</li>
+<li>Crée une note d’index multilingue avec des liens vers chaque thème</li>
+<li>Tu peux enrichir le prompt pour inclure des traductions, des regroupements ou des résumés</li>
+</ul>---
+<h2>🔗 Ressources</h2>
+<ul><li><a href="https://github.com/modularcopilot/mcp" target="_blank" rel="noopener">MCP GitHub</a></li>
+<li><a href="https://docs.n8n.io" target="_blank" rel="noopener">N8N Docs</a></li>
+<li><a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a></li>
+</ul>
+                </div>
+                
+                <!-- Article Navigation -->
+                <div class="article-navigation">
+                    <a href="my-ai-companion-deploying-the-modular-copilot-platform-mcp-server.html" class="nav-prev">
+                        <div class="nav-label">Previous Article</div>
+                        <div class="nav-title">My AI Companion: Deploying the Modular Copilot Platform MCP Server</div>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="the-quest-for-fluid-notes-my-obsidian-livesync-configuration-and-triumphs.html" class="nav-next">
+                        <div class="nav-label">Next Article</div>
+                        <div class="nav-title">The Quest for Fluid Notes: My Obsidian LiveSync Configuration</div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>OLYAHYAI</h3>
+                    <p>Pentester in Training | Cybersecurity Enthusiast</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../../index.html#home">Home</a></li>
+                        <li><a href="../../../index.html#about">About</a></li>
+                        <li><a href="../../../index.html#projects">Projects</a></li>
+                        <li><a href="../../../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/OLYAHYAI" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/olyahyai" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contact@olyahyai.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Omar LYAHYAI. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-terminal"></i></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="../../../js/main.js"></script>
+    <script src="../../../js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../../blog/blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Untitled Article - Technical tutorial and guide">
+    <meta name="keywords" content="homelab, cybersecurity, tutorial, automation_ai">
+    <meta name="author" content="Omar LYAHYAI">
+    
+    <title>Untitled Article | Technical Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <link rel="stylesheet" href="../../../css/responsive.css">
+    <link rel="stylesheet" href="../../../css/animations.css">
+    <link rel="stylesheet" href="../../../blog/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../../index.html" class="logo">
+                        <i class="fas fa-terminal"></i>
+                        <span>OLYAHYAI</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="lang-toggle" aria-label="Switch language">
+                        <span class="lang-current">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Article Header -->
+        <section class="article-header" role="region" aria-label="Article header">
+            <div class="container">
+                <div class="article-breadcrumb">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="../../../index.html">Home</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../../blog/index.html">Blog</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../../blog/automation_ai.html">Automation & AI</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>Untitled Article</span>
+                    </nav>
+                </div>
+                
+                <h1 class="article-title">Untitled Article</h1>
+                
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2025-10-25</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>10 min read</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>Automation & AI</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-tags"></i>
+                        <span>Homelab, Tutorial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Article Content -->
+        <section class="article-content" role="region" aria-label="Article content">
+            <div class="container">
+                <div class="article-body">
+                    </p>
+<p>
+</p>
+<p>
+<h2>Overview</h2>
+<p>This document summarizes the setup, issues encountered, and resolutions implemented during the deployment of Obsidian Self-hosted LiveSync using Docker and CouchDB.</p>
+</p>
+<p>
+---
+</p>
+<p>
+<h2>Setup Goals</h2>
+<ul><li>Enable secure, efficient syncing of Obsidian vaults across devices.</li>
+<li>Use Dockerized CouchDB as the backend database.</li>
+<li>Implement End-to-End Encryption (E2EE) version 2 for data security.</li>
+<li>Handle multi-OS file system case sensitivity gracefully.</li>
+</ul>---
+<h2>Key Issues & Resolutions</h2>
+<h3>1. Missing Docker Compose</h3>
+<strong>Issue:</strong> <code>docker-compose</code> command not found when managing Docker containers.
+<strong>Resolution:</strong> Installed Docker Compose on Ubuntu via official GitHub releases and set executable permissions.
+<h3>2. CORS Configuration for CouchDB</h3>
+<strong>Issue:</strong> Native fetch API failed with CORS error during LiveSync.
+<strong>Resolution:</strong> Edited <code>local.ini</code> inside Docker container to enable CORS with appropriate origins and headers. Restarted CouchDB container.
+<h3>3. Configuration Mismatch: Chunk Size</h3>
+<strong>Issue:</strong> Local LiveSync client reported <code>customChunkSize</code> mismatch (local 60 vs remote 0).
+<strong>Resolution:</strong> Unified chunk size to 60 via LiveSync plugin settings on all clients; accepted remote update prompt.
+<h3>4. Filename Case Sensitivity</h3>
+<strong>Issue:</strong> Potential sync conflicts due to file name case sensitivity across Linux, Windows, and Android devices.
+<strong>Resolution:</strong> Set LiveSync setting <code>handleFilenameCaseSensitive</code> to false when syncing with case-insensitive devices; set true only if all clients use case-sensitive file systems.
+<h3>5. End-to-End Encryption Algorithm Update</h3>
+<strong>Issue:</strong> Older E2EE version detected with known vulnerabilities.
+<strong>Resolution:</strong> Upgraded to E2EE version <code>v2</code> in LiveSync plugin; ensured all clients run version 0.25.0+ for compatibility.
+<h3>6. Vault Rebuild Confirmation</h3>
+<strong>Issue:</strong> Sync metadata rebuild required due to remote database corruption or config changes.
+<strong>Resolution:</strong> Confirmed rebuild within LiveSync plugin interface; backed up data prior to rebuild.
+<h3>7. Connectivity Issues with CouchDB</h3>
+<strong>Issue:</strong> <code>Could not connect to server</code> messages during sync attempts.
+<strong>Resolution:</strong>
+<ul><li>Verified container running and accessible via network.  </li>
+<li>Checked firewall settings and CouchDB URL in LiveSync plugin.  </li>
+<li>Restarted Docker containers as needed.</li>
+</ul>---
+<h2>Step-by-Step Workflow</h2>
+<p>1. Install Docker Compose on Ubuntu.</p>
+2. Configure CouchDB's <code>local.ini</code> for CORS support inside Docker container.
+3. Restart the CouchDB Docker container.
+4. Configure LiveSync plugin settings:
+- <code>customChunkSize</code> = 60
+- Case sensitivity (<code>handleFilenameCaseSensitive</code>) according to OS mix
+- Encryption algorithm = v2
+5. Confirm the vault rebuild when prompted to reset sync metadata.
+6. Verify network connectivity and access to CouchDB from all client devices.
+7. Monitor LiveSync logs and resolve any configuration mismatch prompts.
+8. Backup regularly for data safety.
+</p>
+<p>
+---
+</p>
+<p>
+<h2>References</h2>
+<ul><li><a href="https://dev.to/lightningdev123/how-to-set-up-a-self-hosted-obsidian-sync-server-hcn" target="_blank" rel="noopener">Obsidian Self-hosted LiveSync Setup Guide</a>  </li>
+<li><a href="https://docs.couchdb.org/en/stable/config/index.html" target="_blank" rel="noopener">CouchDB Configuration Docs</a>  </li>
+<li><a href="https://github.com/vrtmrz/obsidian-livesync" target="_blank" rel="noopener">Official Obsidian LiveSync GitHub</a>  </li>
+</ul>---
+<h2>Notes</h2>
+<p>Maintain configuration consistency across devices and apply updates promptly to ensure secure, reliable synchronization of your Obsidian vault.</p>
+</p>
+<p>
+---
+</p>
+<p>
+<em>Document created on 25-Oct-2025</em>
+                </div>
+                
+                <!-- Article Navigation -->
+                <div class="article-navigation">
+                    <a href="my-ai-powered-workflow-integration-of-mcp-docker-and-n8n-for-obsidian.html" class="nav-prev">
+                        <div class="nav-label">Previous Article</div>
+                        <div class="nav-title">My AI-Powered Workflow: Integration of MCP Docker and N8N for Obsidian</div>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="ai-powered-workflow-mcp-docker-n8n.html" class="nav-next">
+                        <div class="nav-label">Next Article</div>
+                        <div class="nav-title">AI-Powered Workflow: MCP Docker N8N</div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>OLYAHYAI</h3>
+                    <p>Pentester in Training | Cybersecurity Enthusiast</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../../index.html#home">Home</a></li>
+                        <li><a href="../../../index.html#about">About</a></li>
+                        <li><a href="../../../index.html#projects">Projects</a></li>
+                        <li><a href="../../../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/OLYAHYAI" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/olyahyai" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contact@olyahyai.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Omar LYAHYAI. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-terminal"></i></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="../../../js/main.js"></script>
+    <script src="../../../js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../../blog/blog.js"></script>
+</body>
+</html>

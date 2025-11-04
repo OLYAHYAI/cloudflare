@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Journal Technique – 2025-10-22 - Technical tutorial and guide">
+    <meta name="keywords" content="homelab, cybersecurity, tutorial, infrastructure">
+    <meta name="author" content="Omar LYAHYAI">
+    
+    <title>Journal Technique – 2025-10-22 | Technical Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../blog/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../index.html" class="logo">
+                        <i class="fas fa-terminal"></i>
+                        <span>OLYAHYAI</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="lang-toggle" aria-label="Switch language">
+                        <span class="lang-current">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Article Header -->
+        <section class="article-header" role="region" aria-label="Article header">
+            <div class="container">
+                <div class="article-breadcrumb">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="../../index.html">Home</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/index.html">Blog</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/infrastructure.html">Infrastructure</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>Journal Technique – 2025-10-22</span>
+                    </nav>
+                </div>
+                
+                <h1 class="article-title">Journal Technique – 2025-10-22</h1>
+                
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2025-10-22</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>10 min read</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>Infrastructure</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-tags"></i>
+                        <span>Homelab, Tutorial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Article Content -->
+        <section class="article-content" role="region" aria-label="Article content">
+            <div class="container">
+                <div class="article-body">
+                    </p>
+<p>
+<h1>Journal Technique – 2025-10-22</h1>
+<h2>Auteur : Omar LYAHYAI</h2>
+<p>---</p>
+</p>
+<p>
+<h2>🔧 Tests de modèles LLM</h2>
+<h3>GPT-OSS-20B</h3>
+<ul><li>Tentative de téléchargement et d'exécution du modèle <code>gpt-oss-20b</code> (21B paramètres, quantifié en 4-bit, ~12 Go).</li>
+<li>Licence : Apache 2.0 (open source, usage commercial autorisé).</li>
+<li>Incompatibilité détectée avec le matériel actuel (ThinkPad E14 Gen 2 – i5-1135G7, 16 Go RAM, 256 Go SSD) :</li>
+</ul>- Pas de GPU dédié (Iris Xe intégré, supporte Vulkan mais avec performances limitées).
+<p>- RAM insuffisante pour charger le modèle complet.</p>
+- Risques : lenteurs extrêmes, plantages, ou échec de chargement.
+</p>
+<p>
+<h3>Mistral 7B (Q4)</h3>
+<ul><li>Recherche de modèles Mistral 7B quantifiés (Q4) via LM Studio.</li>
+<li>Modèles identifiés :</li>
+</ul>- <code>mistral-7b-ielts-evaluator-q4</code> (évaluation de textes IELTS).
+<p>- <code>Mistral-7B-Instruct-v0.1-Q4_K_M</code> (usage général, recommandé).</p>
+<ul><li>Taille : ~4.3 Go, compatible avec la configuration actuelle.</li>
+<li>Recommandation : utiliser Mistral 7B Q4 ou TinyLlama/Phi-2 pour de meilleures performances locales.</li>
+</ul>---
+<h2>⚙️ Proxmox – Débogage VM Kali Linux</h2>
+<h3>Erreur rencontrée :</h3>
+<pre><code class="language-">Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)</code></pre>
+<h3>Causes possibles :</h3>
+<ul><li>Mauvais paramètre <code>root=</code> dans GRUB.</li>
+<li>Absence de disque EFI avec BIOS UEFI (OVMF).</li>
+<li>Contrôleur de disque incompatible (VirtIO SCSI Single requis pour iothread).</li>
+<li>Initramfs corrompu ou manquant.</li>
+</ul><h3>Modifications apportées :</h3>
+<ul><li>Changement du BIOS de <strong>SeaBIOS</strong> vers <strong>OVMF (UEFI)</strong>.</li>
+<li>Ajout d’un <strong>disque EFI</strong> via l’onglet Hardware > Add > EFI Disk.</li>
+<li>Modification du <strong>type de machine</strong> de <code>i440fx</code> vers <code>q35</code>.</li>
+<li>Ajustement du <strong>contrôleur de disque</strong> vers <strong>VirtIO SCSI Single</strong> pour compatibilité avec <code>iothread=on</code>.</li>
+<li>Vérification de l’ordre de boot et des partitions.</li>
+</ul><h3>Avertissement Proxmox :</h3>
+<pre><code class="language-">WARN: iothread is only valid with virtio disk or virtio-scsi-single controller, ignoring</code></pre>
+<p>➡️ Résolu en utilisant un contrôleur compatible (VirtIO SCSI Single).</p>
+</p>
+<p>
+---
+</p>
+<p>
+<h2>💡 Recommandations pour le ThinkPad E14 Gen 2</h2>
+<ul><li>Utiliser des modèles LLM quantifiés (Q4 ou inférieurs) : Mistral 7B Q4, Phi-2, TinyLlama.</li>
+<li>Utiliser <strong>LM Studio</strong> ou <strong>llama.cpp</strong> avec AVX2 + Vulkan.</li>
+<li>Éviter les modèles >10 Go sans GPU dédié.</li>
+<li>Prévoir un SSD externe si besoin de plus d’espace pour les modèles.</li>
+</ul>
+                </div>
+                
+                <!-- Article Navigation -->
+                <div class="article-navigation">
+                    <a href="growing-pains-extending-the-disk-of-my-ubuntu-vm-on-proxmox.html" class="nav-prev">
+                        <div class="nav-label">Previous Article</div>
+                        <div class="nav-title">Growing Pains: Extending Disk of My Ubuntu VM on Proxmox</div>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="my-network-rescue-getting-proxmox-and-pfsense-back-online.html" class="nav-next">
+                        <div class="nav-label">Next Article</div>
+                        <div class="nav-title">My Network Rescue: Getting Proxmox and pfSense Back Online</div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>OLYAHYAI</h3>
+                    <p>Pentester in Training | Cybersecurity Enthusiast</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html#home">Home</a></li>
+                        <li><a href="../../index.html#about">About</a></li>
+                        <li><a href="../../index.html#projects">Projects</a></li>
+                        <li><a href="../../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/OLYAHYAI" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/olyahyai" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contact@olyahyai.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Omar LYAHYAI. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-terminal"></i></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../blog/blog.js"></script>
+</body>
+</html>

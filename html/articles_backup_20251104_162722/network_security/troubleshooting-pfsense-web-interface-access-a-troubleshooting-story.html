@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[1mDépannage accès interface Web pfSense via WAN[0m - Technical tutorial and guide">
+    <meta name="keywords" content="homelab, cybersecurity, tutorial, network_security">
+    <meta name="author" content="Omar LYAHYAI">
+    
+    <title>[1mDépannage accès interface Web pfSense via WAN[0m | Technical Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../blog/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../index.html" class="logo">
+                        <i class="fas fa-terminal"></i>
+                        <span>OLYAHYAI</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="lang-toggle" aria-label="Switch language">
+                        <span class="lang-current">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Article Header -->
+        <section class="article-header" role="region" aria-label="Article header">
+            <div class="container">
+                <div class="article-breadcrumb">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="../../index.html">Home</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/index.html">Blog</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/network_security.html">Network Security</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>[1mDépannage accès interface Web pfSense via WAN...</span>
+                    </nav>
+                </div>
+                
+                <h1 class="article-title">[1mDépannage accès interface Web pfSense via WAN[0m</h1>
+                
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2025-10-25</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>10 min read</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>Network Security</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-tags"></i>
+                        <span>Homelab, Tutorial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Article Content -->
+        <section class="article-content" role="region" aria-label="Article content">
+            <div class="container">
+                <div class="article-body">
+                    </p>
+<p>
+<h1>[1mDépannage accès interface Web pfSense via WAN[0m</h1>
+<strong>Auteur :</strong> Omar LYAHYAI
+<strong>Date :</strong> 2025-10-25
+<p>---</p>
+</p>
+<p>
+<h2>[1m🎯 Objectif[0m</h2>
+<p>Accéder à l'interface web de pfSense via l'interface WAN (ex. <YOUR_PFSENSE_WAN_IP>) depuis un poste client (ex. <YOUR_CLIENT_IP>).</p>
+</p>
+<p>
+---
+</p>
+<p>
+<h2>[1m🔍 Symptômes[0m</h2>
+<ul><li>Impossible d'accéder à <code>https://<YOUR_PFSENSE_WAN_IP></code></li>
+<li>Logs indiquent : <code>block in on em0 from <YOUR_CLIENT_IP> to <YOUR_PFSENSE_WAN_IP> port 443</code></li>
+</ul>---
+<h2>[1m✅ Étapes de dépannage[0m</h2>
+<h3>1. Vérifier que le service GUI est actif</h3>
+<pre><code class="language-bash">Option 11) Restart GUI</code></pre>
+<h3>2. Vérifier l'interface WAN</h3>
+<pre><code class="language-bash">ip a</code></pre>
+<p>→ Confirmer que l'IP WAN est bien <code><YOUR_PFSENSE_WAN_IP></code></p>
+</p>
+<p>
+<h3>3. Désactiver temporairement le pare-feu (test uniquement)</h3>
+<pre><code class="language-bash">pfctl -d</code></pre>
+<p>→ Tester l'accès à <code>https://<YOUR_PFSENSE_WAN_IP></code></p>
+</p>
+<p>
+<h3>4. Ajouter une règle temporaire via le shell</h3>
+<pre><code class="language-bash">echo "pass in quick on em0 proto tcp from <YOUR_CLIENT_IP> to <YOUR_PFSENSE_WAN_IP> port 443 keep state" | pfctl -f -</code></pre>
+<p>→ Remplacer <code>em0</code> si l'interface WAN a un autre nom</p>
+</p>
+<p>
+<h3>5. Créer une règle persistante via l'interface web</h3>
+<pre><code class="language-text">Firewall > Rules > WAN > Add</code></pre>
+<ul><li>Action : Pass</li>
+<li>Interface : WAN</li>
+<li>Protocol : TCP</li>
+<li>Source : Single host → <code><YOUR_CLIENT_IP></code></li>
+<li>Destination : WAN address</li>
+<li>Port : HTTPS (443)</li>
+<li>Description : Autoriser accès GUI depuis PC portable</li>
+</ul><h3>6. Vérifier le service web</h3>
+<pre><code class="language-bash">sockstat -4 | grep :443</code></pre>
+<p>→ Confirmer que le service écoute bien sur le port 443</p>
+</p>
+<p>
+---
+</p>
+<p>
+<h2>[1m🔐 Identifiants par défaut pfSense[0m</h2>
+<ul><li><strong>Nom d'utilisateur</strong> : <code>admin</code></li>
+<li><strong>Mot de passe</strong> : <code>pfsense</code></li>
+</ul>Si oublié :
+<pre><code class="language-bash">Option 3) Reset admin account and password</code></pre>
+<p>---</p>
+</p>
+<p>
+<h2>[1m🧠 Astuce sécurité[0m</h2>
+<p>Limiter l'accès à l'interface web uniquement à ton IP : <code><YOUR_CLIENT_IP></code></p>
+</p>
+<p>
+---
+</p>
+<p>
+<h2>[1m📎 Notes complémentaires[0m</h2>
+<ul><li>pfSense bloque par défaut l'accès à l'interface web via WAN</li>
+<li>Toujours tester les règles avec prudence</li>
+<li>Utiliser des alias pour simplifier les règles de pare-feu</li>
+</ul>
+                </div>
+                
+                <!-- Article Navigation -->
+                <div class="article-navigation">
+                    <a href="the-ssl-certificate-saga-local-dns-nginx-and-my-homelab.html" class="nav-prev">
+                        <div class="nav-label">Previous Article</div>
+                        <div class="nav-title">The SSL Certificate Saga: Local DNS, Nginx and My Homelab</div>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="securing-my-n8n-workflows-a-deep-dive-into-dns-and-tls.html" class="nav-next">
+                        <div class="nav-label">Next Article</div>
+                        <div class="nav-title">Securing My N8N Workflows: A Deep Dive into DNS and TLS</div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>OLYAHYAI</h3>
+                    <p>Pentester in Training | Cybersecurity Enthusiast</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html#home">Home</a></li>
+                        <li><a href="../../index.html#about">About</a></li>
+                        <li><a href="../../index.html#projects">Projects</a></li>
+                        <li><a href="../../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/OLYAHYAI" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/olyahyai" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contact@olyahyai.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Omar LYAHYAI. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-terminal"></i></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../blog/blog.js"></script>
+</body>
+</html>

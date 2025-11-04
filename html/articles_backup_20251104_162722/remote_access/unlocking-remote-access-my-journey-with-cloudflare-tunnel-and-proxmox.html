@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="🧾 Compte Rendu : Configuration Proxmox + Cloudflare Tunnel - Technical tutorial and guide">
+    <meta name="keywords" content="homelab, cybersecurity, tutorial, remote_access">
+    <meta name="author" content="Omar LYAHYAI">
+    
+    <title>🧾 Compte Rendu : Configuration Proxmox + Cloudflare Tunnel | Technical Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../blog/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../index.html" class="logo">
+                        <i class="fas fa-terminal"></i>
+                        <span>OLYAHYAI</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="lang-toggle" aria-label="Switch language">
+                        <span class="lang-current">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Article Header -->
+        <section class="article-header" role="region" aria-label="Article header">
+            <div class="container">
+                <div class="article-breadcrumb">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="../../index.html">Home</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/index.html">Blog</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/remote_access.html">Remote Access</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>🧾 Compte Rendu : Configuration Proxmox + Cloudflar...</span>
+                    </nav>
+                </div>
+                
+                <h1 class="article-title">🧾 Compte Rendu : Configuration Proxmox + Cloudflare Tunnel</h1>
+                
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2025-10-27</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>10 min read</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>Remote Access</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-tags"></i>
+                        <span>Homelab, Tutorial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Article Content -->
+        <section class="article-content" role="region" aria-label="Article content">
+            <div class="container">
+                <div class="article-body">
+                    </p>
+<p>
+<h1>🧾 Compte Rendu : Configuration Proxmox + Cloudflare Tunnel</h1>
+<h2>📌 Contexte</h2>
+<ul><li><strong>Objectif</strong> : Accéder à l’interface Proxmox via un sous-domaine public sécurisé (Cloudflare Tunnel).</li>
+<li><strong>Domaine utilisé</strong> : <code>proxmox.olyhome.site</code></li>
+<li><strong>Infrastructure</strong> :</li>
+</ul>- Proxmox installé sur IP locale <code><YOUR_PROXMOX_IP></code>
+<p>- Tunnel Cloudflare configuré</p>
+- Certificat Let's Encrypt généré via ACME DNS (plugin Cloudflare)
+</p>
+<p>
+<h2>✅ Étapes réalisées</h2>
+<p>1. Création du tunnel Cloudflare et association du hostname</p>
+2. Configuration ACME dans Proxmox avec plugin DNS Cloudflare
+3. Obtention du certificat SSL Let's Encrypt pour <code>proxmox.olyhome.site</code>
+4. Redémarrage du service <code>pveproxy</code> pour appliquer le certificat
+5. Vérification de la configuration réseau (<code>ip a</code>, <code>/etc/network/interfaces</code>)
+6. Redémarrage du service <code>cloudflared</code>
+7. Ajout du hostname dans Cloudflare Zero Trust > Tunnel > Public Hostnames
+8. Activation de <code>cloudflared</code> au démarrage (<code>systemctl enable cloudflared</code>)
+</p>
+<p>
+<h2>❌ Problèmes rencontrés</h2>
+<ul><li>Perte de connectivité réseau après reboot (ping impossible)</li>
+<li>Tunnel Cloudflare marqué comme <strong>DOWN</strong> (Erreur 1033)</li>
+<li>Erreur <strong>502 Bad Gateway</strong> lors de l'accès externe</li>
+<li><code>cloudflared</code> ne redémarrait pas automatiquement</li>
+<li>TLS strict bloquait l'accès à cause du certificat auto-signé</li>
+</ul><h2>🔍 Diagnostic</h2>
+<ul><li>La passerelle (<code>gateway</code>) n'était pas appliquée au démarrage malgré sa présence dans <code>/etc/network/interfaces</code></li>
+<li>Le service <code>cloudflared</code> était lancé avec <code>--token</code>, ce qui ignorait le fichier <code>config.yml</code></li>
+<li>Le tunnel n'était pas associé à un hostname dans Cloudflare Zero Trust</li>
+<li>Le mode <strong>Full (Strict)</strong> de Cloudflare exigeait un certificat valide</li>
+</ul><h2>🛠️ Résolution</h2>
+<ul><li>Ajout manuel de la route par défaut : <code>ip route add default via <YOUR_GATEWAY_IP> dev vmbr0</code></li>
+<li>Création du fichier <code>/etc/cloudflared/config.yml</code> avec :</li>
+</ul><pre><code class="language-yaml">tunnel: <TUNNEL_ID>
+<p>credentials-file: /etc/cloudflared/<TUNNEL_ID>.json</p>
+</p>
+<p>
+ingress:
+- hostname: proxmox.olyhome.site
+service: https://localhost:8006
+originRequest:
+noTLSVerify: true
+- service: http_status:404</code></pre>
+<ul><li>Modification du service systemd pour utiliser <code>--config /etc/cloudflared/config.yml</code></li>
+<li>Ajout du hostname dans Cloudflare Tunnel > Public Hostnames</li>
+<li>Passage du mode TLS à <strong>Full</strong> (au lieu de Full Strict)</li>
+</ul><h2>✅ Résultat final</h2>
+<ul><li>Accès fonctionnel à <code>https://proxmox.olyhome.site</code></li>
+<li>Tunnel Cloudflare stable et automatique au démarrage</li>
+<li>Interface Proxmox sécurisée et accessible à distance</li>
+</ul><h2>📸 Visuels à intégrer</h2>
+<ul><li>Capture du <code>curl -vk https://proxmox.olyhome.site</code></li>
+<li>Capture du tunnel Cloudflare marqué comme Healthy</li>
+<li>Capture du DNS <code>CNAME</code> vers <code>cfargotunnel.com</code></li>
+<li>Capture du fichier <code>config.yml</code></li>
+</ul><h2>🔮 Prochaines étapes</h2>
+<h3>🔧 DNS locaux avec certificats SSL pour services internes</h3>
+<ul><li>Créer des entrées DNS internes (via pfSense ou dnsmasq) pour :</li>
+</ul>- <code>n8n.olyhome.lan</code>
+<p>- <code>nginx.olyhome.lan</code></p>
+- <code>pfsense.olyhome.lan</code>
+<ul><li>Générer des certificats Let's Encrypt pour ces services</li>
+<li>Ajouter des tunnels Cloudflare ou reverse proxy NGINX pour les exposer</li>
+<li>Centraliser les logs et la supervision (Grafana, Prometheus...)</li>
+</ul>---
+<p>🕓 Rapport généré le : 2025-10-27 14:35</p>
+</p>
+<p>
+                </div>
+                
+                <!-- Article Navigation -->
+                <div class="article-navigation">
+                    <a href="the-twingate-connection-mystery-untangling-authentication-failures.html" class="nav-prev">
+                        <div class="nav-label">Previous Article</div>
+                        <div class="nav-title">The Twingate Connection Mystery: Untangling Authentication Failures</div>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="the-twingate-connection-mystery-untangling-authentication-failures.html" class="nav-next">
+                        <div class="nav-label">Next Article</div>
+                        <div class="nav-title">The Twingate Connection Mystery: Untangling Authentication Failures</div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>OLYAHYAI</h3>
+                    <p>Pentester in Training | Cybersecurity Enthusiast</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html#home">Home</a></li>
+                        <li><a href="../../index.html#about">About</a></li>
+                        <li><a href="../../index.html#projects">Projects</a></li>
+                        <li><a href="../../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/OLYAHYAI" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/olyahyai" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contact@olyahyai.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Omar LYAHYAI. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-terminal"></i></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../blog/blog.js"></script>
+</body>
+</html>

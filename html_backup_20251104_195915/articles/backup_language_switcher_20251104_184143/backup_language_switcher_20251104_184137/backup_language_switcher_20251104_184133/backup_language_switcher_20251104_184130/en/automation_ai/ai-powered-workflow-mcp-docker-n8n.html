@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My AI-Powered Workflow: Integration of MCP, Docker and N8N for Obsidian - How I automated my documentation workflow using AI-powered tools">
+    <meta name="keywords" content="MCP, N8N, AI, Docker, workflow automation, obsidian, documentation">
+    <meta name="author" content="Omar LYAHYAI">
+    
+    <title>My AI-Powered Workflow: Integration of MCP, Docker and N8N for Obsidian | Technical Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <link rel="stylesheet" href="../../../css/responsive.css">
+    <link rel="stylesheet" href="../../../css/animations.css">
+    <link rel="stylesheet" href="../../../blog/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../../index.html" class="logo">
+                        <i class="fas fa-terminal"></i>
+                        <span>OLYAHYAI</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="lang-toggle" aria-label="Switch language">
+                        <span class="lang-current">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Article Header -->
+        <section class="article-header" role="region" aria-label="Article header">
+            <div class="container">
+                <div class="article-breadcrumb">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="../../../index.html">Home</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../../blog/index.html">Blog</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../../blog/automation_ai.html">Automation & AI</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>My AI-Powered Workflow</span>
+                    </nav>
+                </div>
+                
+                <h1 class="article-title">My AI-Powered Workflow: Integration of MCP, Docker and N8N for Obsidian</h1>
+                
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>October 25, 2025</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>12 min read</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>Automation & AI</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-tags"></i>
+                        <span>MCP, N8N, AI, Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Article Content -->
+        <section class="article-content" role="region" aria-label="Article content">
+            <div class="container">
+                <div class="article-body">
+                    <h2>🚀 Integration IA with MCP, Docker and N8N</h2>
+                    
+                    <p><strong>Author:</strong> Omar LYAHYAI</p>
+                    <p><strong>Date:</strong> 2025-10-25</p>
+                    
+                    <h2>🎯 Objective</h2>
+                    <p>Automate the organization of Obsidian notes using an AI accessible via API, orchestrated with Docker, MCP and N8N.</p>
+                    
+                    <h2>🧑‍💻 Prerequisites</h2>
+                    <ul>
+                        <li>Docker installed</li>
+                        <li>MCP (Modular Copilot Platform) deployed</li>
+                        <li>N8N installed (via Docker or local)</li>
+                        <li>Obsidian Vault accessible locally</li>
+                    </ul>
+                    
+                    <h2>🧪 Detailed Steps</h2>
+                    
+                    <h3>1. 📦 Deploy MCP with Docker</h3>
+                    <pre><code class="language-bash">docker run -d \
+  --name mcp \
+  -p 5000:5000 \
+  -v $(pwd)/mcp_data:/app/data \
+  ghcr.io/modularcopilot/mcp:latest</code></pre>
+                    <p>MCP exposes an API on <code>http://localhost:5000</code></p>
+                    
+                    <h3>2. 🧠 Prepare a prompt for the AI</h3>
+                    <p>Example prompt:</p>
+                    <pre><code class="language-json">{
+  "prompt": "Unify all my Obsidian notes in English. Translate French titles, group similar content, and create a thematic index."
+}</code></pre>
+                    
+                    <h3>3. 🤖 Create an N8N workflow</h3>
+                    <h4>Workflow steps:</h4>
+                    <ol>
+                        <li><strong>Trigger:</strong> manual or scheduled</li>
+                        <li><strong>Read Files:</strong> read <code>.md</code> files from Obsidian vault</li>
+                        <li><strong>HTTP Request:</strong> send content to MCP via POST</li>
+                        <li>URL: <code>http://localhost:5000/api/prompt</code></li>
+                        <li>Body: JSON with prompt and notes content</li>
+                        <li><strong>Write File:</strong> save response in a new <code>.md</code> file</li>
+                    </ol>
+                    
+                    <h3>4. ⚙️ Example HTTP Request Configuration in N8N</h3>
+                    <ul>
+                        <li><strong>Method:</strong> POST</li>
+                        <li><strong>URL:</strong> <code>http://localhost:5000/api/prompt</code></li>
+                        <li><strong>Headers:</strong> <code>Content-Type: application/json</code></li>
+                        <li><strong>Body:</strong></li>
+                    </ul>
+                    <pre><code class="language-json">{
+  "prompt": "Organize my Obsidian notes by theme and language.",
+  "notes": "{{ $json["content"] }}"
+}</code></pre>
+                    
+                    <h3>5. 📁 Save in Obsidian</h3>
+                    <p>The generated file is saved in the <code>Vault/Index/organization.md</code> folder</p>
+                    <p>You can link this file in your Obsidian home note</p>
+                    
+                    <h2>🧠 Tips</h2>
+                    <ul>
+                        <li>Use tags <code>#fr</code> and <code>#en</code> to identify languages</li>
+                        <li>Create a multilingual index note with links to each theme</li>
+                        <li>You can enrich the prompt to include translations, groupings, or summaries</li>
+                    </ul>
+                    
+                    <h2>🔗 Resources</h2>
+                    <ul>
+                        <li><a href="https://github.com/modularcopilot/mcp" target="_blank" rel="noopener">MCP GitHub</a></li>
+                        <li><a href="https://docs.n8n.io" target="_blank" rel="noopener">N8N Docs</a></li>
+                        <li><a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a></li>
+                    </ul>
+                    
+                    <h2>🔧 Advanced Configuration</h2>
+                    
+                    <h3>Docker Compose Setup</h3>
+                    <p>For a more robust setup, you can use Docker Compose:</p>
+                    <pre><code class="language-yaml">version: '3.8'
+services:
+  mcp:
+    image: ghcr.io/modularcopilot/mcp:latest
+    container_name: mcp
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mcp_data:/app/data
+    restart: unless-stopped
+    
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    restart: unless-stopped</code></pre>
+                    
+                    <h3>Automation Scheduling</h3>
+                    <p>You can schedule the workflow to run automatically:</p>
+                    <ul>
+                        <li>Daily at 2 AM for note organization</li>
+                        <li>Weekly for comprehensive indexing</li>
+                        <li>On file changes using file watchers</li>
+                    </ul>
+                    
+                    <h3>Advanced Prompts</h3>
+                    <p>Example of an advanced prompt for better organization:</p>
+                    <pre><code class="language-json">{
+  "prompt": "Analyze all Obsidian notes and: 1) Group by technical domain (infrastructure, security, automation), 2) Create a hierarchical index with main topics and subtopics, 3) Translate all French content to English while preserving code blocks, 4) Generate summary tables for each category, 5) Suggest cross-references between related notes.",
+  "options": {
+    "preserve_code": true,
+    "create_index": true,
+    "translate_content": true,
+    "generate_summaries": true
+  }
+}</code></pre>
+                    
+                    <h2>📊 Monitoring and Maintenance</h2>
+                    
+                    <h3>Logging</h3>
+                    <p>Monitor your workflow with proper logging:</p>
+                    <pre><code class="language-bash"># Check MCP logs
+docker logs mcp
+
+# Check N8N logs
+docker logs n8n</code></pre>
+                    
+                    <h3>Performance Optimization</h3>
+                    <ul>
+                        <li>Limit concurrent API calls to MCP</li>
+                        <li>Implement caching for repeated operations</li>
+                        <li>Use batch processing for large note collections</li>
+                    </ul>
+                    
+                    <h2>🔒 Security Considerations</h2>
+                    <ul>
+                        <li>Secure MCP API with authentication</li>
+                        <li>Use environment variables for sensitive data</li>
+                        <li>Implement rate limiting for API calls</li>
+                        <li>Regularly update Docker images</li>
+                    </ul>
+                    
+                    <h2>🚀 Next Steps</h2>
+                    <ul>
+                        <li>Integrate with Git for version control</li>
+                        <li>Add webhooks for real-time processing</li>
+                        <li>Create custom N8N nodes for Obsidian-specific operations</li>
+                        <li>Implement backup and recovery procedures</li>
+                    </ul>
+                </div>
+                
+                <!-- Article Navigation -->
+                <div class="article-navigation">
+                    <a href="the-quest-for-fluid-notes-my-obsidian-livesync-configuration-and-triumphs.html" class="nav-prev">
+                        <div class="nav-label">Previous Article</div>
+                        <div class="nav-title">The Quest for Fluid Notes: My Obsidian LiveSync Configuration</div>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="mcp-configuration-guide-yaml-setup-and-configuration.html" class="nav-next">
+                        <div class="nav-label">Next Article</div>
+                        <div class="nav-title">MCP Configuration Guide: YAML Setup and Configuration</div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>OLYAHYAI</h3>
+                    <p>Pentester in Training | Cybersecurity Enthusiast</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../../index.html#home">Home</a></li>
+                        <li><a href="../../../index.html#about">About</a></li>
+                        <li><a href="../../../index.html#projects">Projects</a></li>
+                        <li><a href="../../../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/OLYAHYAI" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/olyahyai" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contact@olyahyai.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Omar LYAHYAI. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-terminal"></i></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="../../../js/main.js"></script>
+    <script src="../../../js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../../blog/blog.js"></script>
+</body>
+</html>
