@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="🧾 Journal de configuration : DNS local + Nginx Proxy Manager + SSL - Technical tutorial and guide">
+    <meta name="keywords" content="homelab, cybersecurity, tutorial, network_security">
+    <meta name="author" content="Omar LYAHYAI">
+    
+    <title>🧾 Journal de configuration : DNS local + Nginx Proxy Manager + SSL | Technical Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../blog/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../index.html" class="logo">
+                        <i class="fas fa-terminal"></i>
+                        <span>OLYAHYAI</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="lang-toggle" aria-label="Switch language">
+                        <span class="lang-current">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Article Header -->
+        <section class="article-header" role="region" aria-label="Article header">
+            <div class="container">
+                <div class="article-breadcrumb">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="../../index.html">Home</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/index.html">Blog</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <a href="../../blog/network_security.html">Network Security</a>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span>🧾 Journal de configuration : DNS local + Nginx Pro...</span>
+                    </nav>
+                </div>
+                
+                <h1 class="article-title">🧾 Journal de configuration : DNS local + Nginx Proxy Manager + SSL</h1>
+                
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2025-10-25</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>10 min read</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>Network Security</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <i class="fas fa-tags"></i>
+                        <span>Homelab, Tutorial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Article Content -->
+        <section class="article-content" role="region" aria-label="Article content">
+            <div class="container">
+                <div class="article-body">
+                    <h1>🧾 Journal de configuration : DNS local + Nginx Proxy Manager + SSL</h1>
+<h2>📅 Date : 26 octobre 2025</h2>
+<h2>👤 Utilisateur : FREEDOM</h2>
+<p>---</p>
+</p>
+<p>
+<h2>🧠 Objectif</h2>
+<p>Configurer un environnement local sécurisé avec :</p>
+<ul><li>Un domaine public <code>olyhome.site</code> (acheté chez Hostinger)</li>
+<li>Un serveur DNS local (Bind9) pour gérer les sous-domaines internes</li>
+<li>Nginx Proxy Manager (NPM) pour faire du reverse proxy</li>
+<li>Des sous-domaines locaux sécurisés en HTTPS (ex: <code>proxmox.olyhome.site</code>, <code>n8n.olyhome.site</code>)</li>
+<li>Sans exposer les services à Internet</li>
+</ul>---
+<h2>✅ Étapes réalisées</h2>
+<h3>1. 🧱 Configuration de Bind9 (DNS local)</h3>
+<ul><li>Création de la zone <code>olyhome.site</code> dans Bind9</li>
+<li>Ajout de sous-domaines pointant vers l’IP locale (ex: <code>proxmox</code>, <code>n8n</code>, <code>ginx</code>)</li>
+<li>Test avec <code>dig</code> confirmé : résolution DNS locale fonctionne</li>
+</ul><h3>2. 🐳 Déploiement de Bind9 dans Docker</h3>
+<ul><li>Utilisation d’un <code>docker-compose.yml</code> pour exposer le port 53</li>
+<li>Conflit initial avec <code>systemd-resolved</code> → désactivé</li>
+<li>Port 53 libéré → Bind9 lancé avec succès</li>
+</ul><h3>3. 🌐 Configuration de Nginx Proxy Manager</h3>
+<ul><li>NPM lancé sur le port 81 (<code>jc21/nginx-proxy-manager</code>)</li>
+<li>Création de proxy hosts pour les sous-domaines</li>
+<li>Redirection vers les bons ports internes (ex: <code>proxmox.olyhome.site</code> → <code>https://192.168.11.254:8006</code>)</li>
+</ul><h3>4. 🔐 Tentative de sécurisation SSL</h3>
+<ul><li>Objectif : utiliser un certificat SSL <strong>valide</strong> en local</li>
+<li>NPM ne supporte pas Hostinger pour le DNS challenge automatique</li>
+<li>Génération d’un certificat via <strong>Certbot en mode manuel</strong></li>
+</ul>- Ajout d’un enregistrement TXT <code>_acme-challenge</code> dans la zone DNS Hostinger
+<p>- Certificat généré avec succès : <code>fullchain.pem</code> + <code>privkey.pem</code></p>
+</p>
+<p>
+<h3>5. ❌ Problème rencontré : erreur d’import dans NPM</h3>
+<ul><li>NPM refuse <code>privkey.pem</code> car elle est protégée par une passphrase</li>
+<li>Tentative de suppression de la passphrase :</li>
+</ul>- <code>openssl rsa</code> → erreur "Not an RSA key"
+<p>- <code>openssl ec</code> → conversion réussie → <code>privkey-nopass.pem</code></p>
+<ul><li>Import dans NPM échoue toujours malgré la clé sans passphrase</li>
+</ul>---
+<h2>🧨 Problème actuel</h2>
+<p>> Impossible d’importer le certificat SSL dans NPM malgré une clé privée sans passphrase. Message d’erreur persistant.</p>
+</p>
+<p>
+---
+</p>
+<p>
+<h2>📌 Prochaines pistes</h2>
+<ul><li>Vérifier le format exact de la clé (<code>PEM</code>, sans métadonnées chiffrées)</li>
+<li>Tester un certificat auto-signé pour valider le format attendu par NPM</li>
+<li>Automatiser le renouvellement avec Certbot + script de conversion</li>
+<li>Envisager un reverse proxy Nginx manuel si NPM bloque</li>
+</ul>---
+<h2>📁 Fichiers générés</h2>
+<ul><li><code>/etc/letsencrypt/live/olyhome.site/fullchain.pem</code></li>
+<li><code>/etc/letsencrypt/live/olyhome.site/privkey.pem</code></li>
+<li><code>/home/f4blox/Desktop/privkey-nopass.pem</code> (clé sans passphrase)</li>
+</ul>---
+<h2>🧠 Notes</h2>
+<ul><li>DNSSEC visible dans Hostinger mais <strong>non utilisé</strong> pour le challenge SSL</li>
+<li>Le domaine <code>olyhome.site</code> <strong>n’est pas exposé publiquement</strong> pour l’instant</li>
+</ul>
+                </div>
+                
+                <!-- Article Navigation -->
+                <div class="article-navigation">
+                    <a href="the-digital-guardian-of-my-homelab-setting-up-a-secure-reverse-proxy-with-https.html" class="nav-prev">
+                        <div class="nav-label">Previous Article</div>
+                        <div class="nav-title">The Digital Guardian of My Homelab: Setting Up a Secure Reverse Proxy</div>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="troubleshooting-pfsense-web-interface-access-a-troubleshooting-story.html" class="nav-next">
+                        <div class="nav-label">Next Article</div>
+                        <div class="nav-title">Troubleshooting pfSense Web Interface Access: A Troubleshooting Story</div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>OLYAHYAI</h3>
+                    <p>Pentester in Training | Cybersecurity Enthusiast</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html#home">Home</a></li>
+                        <li><a href="../../index.html#about">About</a></li>
+                        <li><a href="../../index.html#projects">Projects</a></li>
+                        <li><a href="../../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/OLYAHYAI" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/olyahyai" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contact@olyahyai.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Omar LYAHYAI. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-terminal"></i></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../blog/blog.js"></script>
+</body>
+</html>
